@@ -17,26 +17,26 @@ def canStoprecursive(runway, initialSpeed, startindex=0):
 
 # print(canStoprecursive(runway=[True,False,True,True,True,False,True,True,False,True,True],initialSpeed=4,startindex=00))
 
-# def canStoprecursive_with_memo(runway, initialSpeed, startindex=0, memo=None):
-#     print(initialSpeed,startindex)
-#     if memo == None:
-#         memo = [[]*100]*1000
-#     if memo[initialSpeed][startindex] in memo:
-#         return memo[initialSpeed][startindex]
+def canStoprecursive_with_memo(runway, initialSpeed, startindex=0, memo=None):
+    print(initialSpeed, startindex)
+    if memo == None:
+        memo = [[]*100]*1000
+    if memo[initialSpeed][startindex] in memo:
+        return memo[initialSpeed][startindex]
 
-#     if startindex >= len(runway) or startindex < 0 or runway[startindex] == False:
-#         memo[initialSpeed][startindex] = False
-#         return False
-#     if initialSpeed == 0:
-#         memo[initialSpeed][startindex] = True
-#         return True
+    if startindex >= len(runway) or startindex < 0 or runway[startindex] == False:
+        memo[initialSpeed][startindex] = False
+        return False
+    if initialSpeed == 0:
+        memo[initialSpeed][startindex] = True
+        return True
 
-#     for adjustSpeed in [initialSpeed-1, initialSpeed, initialSpeed+1]:
-#         if canStoprecursive_with_memo(runway, adjustSpeed, startindex+adjustSpeed, memo):
-#             memo[adjustSpeed][startindex] = True
-#             return True
-#     memo[initialSpeed][startindex] = False
-#     return False
+    for adjustSpeed in [initialSpeed-1, initialSpeed, initialSpeed+1]:
+        if canStoprecursive_with_memo(runway, adjustSpeed, startindex+adjustSpeed, memo):
+            memo[adjustSpeed][startindex] = True
+            return True
+    memo[initialSpeed][startindex] = False
+    return False
 
 
 # print(canStoprecursive_with_memo(runway=[
