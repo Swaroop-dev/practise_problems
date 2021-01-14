@@ -3,7 +3,7 @@
 # longest common sequence and subsequence
 # longest common increasing sequence
 # deletions required to convert string into palindrom
-#coin change problem
+# coin change problem
 
 
 def longest_common_sequence(X, Y):
@@ -76,20 +76,48 @@ def shortest_path():
         return min()
 
 
-
-def coinchange_recursive(A,s):
-    if s==0:
+def coinchange_recursive(A, s):
+    if s == 0:
         return 0
-    if s<0:
+    if s < 0:
         return float('inf')
-    coins=float('inf')
-    
+    coins = float('inf')
+
     for i in A:
-        res=coinchange_recursive(A,s-i)
-        if res!=float('inf'):
-            coins=min(coins,res+1)
+        res = coinchange_recursive(A, s-i)
+        if res != float('inf'):
+            coins = min(coins, res+1)
     return coins
 
-# print(coinchange_recursive(A=[1,3,5,7],s=15))        
+# print(coinchange_recursive(A=[1,3,5,7],s=15))
 
 
+def coinchange_optimized(A, s, T=None):
+    if T == None:
+        T = [None]*(s+1)
+    if s == 0:
+        T[s] = 0
+        return 0
+    if s < 0:
+        return float('inf')
+
+    if T[s]:
+        return T[s]
+
+    coins = float('inf')
+
+    for i in A:
+        if T[s-i] and (s-i) >= 0:
+            res = T[s-i]
+        elif (s-i) < 0:
+            res = float('inf')
+        else:
+            res = coinchange_optimized(A, s-i, T)
+
+        if res != float('inf'):
+            coins = min(coins, res+1)
+    T[s] = coins
+    return coins
+
+
+# print(coinchange_optimized(A=[1, 3, 5, 7], s=24))
