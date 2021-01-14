@@ -121,3 +121,18 @@ def coinchange_optimized(A, s, T=None):
 
 
 # print(coinchange_optimized(A=[1, 3, 5, 7], s=24))
+
+
+def coinchange_iterative(A,s):
+    T=[0]*(s+1)
+    
+    for i in range(1,s+1):
+        T[i]=float('inf')
+        for j in A:
+            if i-j>=0:
+                res=T[i-j]
+                if res!=float('inf'):
+                    T[i]=min(T[i],res+1)
+    return T[-1]           
+
+print(coinchange_iterative([1,3,5,7],18))
