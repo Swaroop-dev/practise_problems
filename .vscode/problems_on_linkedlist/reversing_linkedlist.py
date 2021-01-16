@@ -22,7 +22,7 @@ class linkedlist:
             return None
         cur = self.head
         while cur:
-            print(cur.data)
+            print(cur.data, end="->")
             cur = cur.next
 
     def reversing_linkedlist(self):
@@ -42,6 +42,11 @@ class linkedlist:
         if self.head is None:
             return None
         cur = self.head
+        if self.head.data == n1:
+            nxt = self.head.next
+            self.head.next = None
+            self.head = nxt
+            return
         while cur and cur.data != n1:
             prev = cur
             cur = cur.next
@@ -63,25 +68,44 @@ class linkedlist:
             cur2 = cur2.next
         prev1.next, prev2.next, cur1.next, cur2.next = cur2, cur1, cur2.next, cur1.next
 
+    def deleting_mid_element(self):
+        if not self.head:
+            return
+        while self.head:
+            cur1 = cur2 = self.head
+            prev = None
+            while cur2 and cur2.next:
+                prev = cur1
+                cur1 = cur1.next
+                cur2 = cur2.next.next
+                
+            if cur1 == self.head:
+                self.head = None
+                print("List empty")
+                return
+            prev.next = cur1.next
+            cur1.next = None
+            self.printing_node()
+            print('\n')
+
     def reversing_part_of_the_linkedlist(self, index1, index2):
         cur = self.head
         inc = 1
-        while cur and inc <index1:
+        prev = None
+        while cur and inc < index1:
             prev = cur
             cur = cur.next
             inc = inc+1
-        s1=prev
-        s2=cur    
+        s1 = prev
+        s2 = cur
         while cur and inc <= index2:
             nxt = cur.next
             cur.next = prev
             prev = cur
             cur = nxt
             inc = inc+1
-        s1.next=prev 
-        s2.next=cur 
-
-    
+        s1.next = prev
+        s2.next = cur
 
 
 l1 = linkedlist()
@@ -91,5 +115,10 @@ l1.adding_node(3)
 l1.adding_node(4)
 l1.adding_node(5)
 l1.adding_node(6)
-l1.reversing_part_of_the_linkedlist(2, 5)
+l1.adding_node(7)
 l1.printing_node()
+print('\n')
+l1.deleting_mid_element()
+# l1.reversing_part_of_the_linkedlist(2, 5)
+# print('\n')
+# l1.printing_node()
