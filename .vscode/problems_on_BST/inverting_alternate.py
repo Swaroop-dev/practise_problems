@@ -94,6 +94,73 @@ class BinaryTree:
                 print(s1.data,end="-")
                 cur=s1.right
     
+    def printing_left_view(self,node):
+        q1=deque()
+        q1.append(node)
+        while q1:
+            l1=len(q1)
+            level_el=None
+            while l1>0:
+                q2=q1.popleft()
+                if level_el is None:
+                    level_el=q2.data
+                    print(level_el,end="->")
+                if q2.left:
+                    q1.append(q2.left)
+                if q2.right:
+                    q1.append(q2.right)
+                l1=l1-1    
+    
+    def printing_right_view(self,node):
+        q1=deque()
+        q1.append(node)
+        while q1:
+            l1=len(q1)
+            level_el=None
+            while l1>0:
+                q2=q1.popleft()
+                if level_el is None:
+                    level_el=q2.data
+                    print(level_el,end="->")
+                if q2.right:
+                    q1.append(q2.right)
+                if q2.left:
+                    q1.append(q2.left)
+                l1=l1-1 
+    
+    def print_bottom(self,node,dist,level,dict):
+        if node is None:
+            return
+        if not dist in dict or level>=dict[dist][1]:
+            dict[dist]=(level,node.data)
+        if node.left:
+            self.print_bottom(node.left,dist-1,level+1,dict)   
+        if node.right:
+            self.print_bottom(node.right,dist+1,level+1,dict)
+            
+    def printing_bottom_view(self,node):
+        dict={}
+        self.print_bottom(node,0,0,dict)
+        
+        for i in dict.keys():
+            print(dict[i][1],end="-")
+    
+    def print_top(self,node,dist,level,dict):
+        if dist not in dict or level<=dict[dist][0]:
+            dict[dist]=(level,node.data)
+        if node.left:
+            self.print_top(node.left,dist-1,level+1,dict)   
+        if node.right:
+            self.print_top(node.right,dist+1,level+1,dict)    
+    
+    def printing_top_view(self,node):
+        dict={}
+        self.print_top(node,0,0,dict)
+        for i in dict.keys():
+            print(dict[i][1],end="-")
+    
+    
+    
     def spiralOrder(self,node):
         q1=deque()
         q1.append(node)
@@ -149,14 +216,14 @@ t1.root.left.left = Node(4)
 t1.root.left.right = Node(5)
 t1.root.right.left = Node(6)
 t1.root.right.right = Node(7)
-t1.root.left.left.left = Node(8)
-t1.root.left.left.right = Node(9)
-t1.root.left.right.left = Node(10)
-t1.root.left.right.right = Node(11)
-t1.root.right.left.left = Node(12)
-t1.root.right.left.right = Node(13)
-t1.root.right.right.left = Node(14)
-t1.root.right.right.right = Node(15)
+# t1.root.left.left.left = Node(8)
+# t1.root.left.left.right = Node(9)
+# t1.root.left.right.left = Node(10)
+# t1.root.left.right.right = Node(11)
+# t1.root.right.left.left = Node(12)
+# t1.root.right.left.right = Node(13)
+# t1.root.right.right.left = Node(14)
+# t1.root.right.right.right = Node(15)
 # t1.levelOrder(t1.root)
 # print("\n")
 # t1.preOrder(t1.root)
@@ -171,11 +238,15 @@ t1.root.right.right.right = Node(15)
 # print('\n')
 # t1.spiralOrder(t1.root)
 # print('\n')
-t1.preOrder(t1.root)
-print('/n')
-t1.inverting_Alternate_level(t1.root)
-t1.preOrder(t1.root)
+# t1.preOrder(t1.root)
+# print('/n')
+# t1.inverting_Alternate_level(t1.root)
+# t1.preOrder(t1.root)
 
-
-
+# t1.printing_left_view(t1.root)
+# print('\n')
+# t1.printing_right_view(t1.root)
+t1.printing_bottom_view(t1.root)
+print('\n')
+t1.printing_top_view(t1.root)
 
