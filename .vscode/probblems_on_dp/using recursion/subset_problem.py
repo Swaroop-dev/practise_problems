@@ -25,5 +25,16 @@ def path_matrix(i,j,n,m,ospf):
     path_matrix(i,j+1,n,m,ospf+"R")
         
         
-path_matrix(0,0,3,3,"")     
-print(total)   
+# path_matrix(0,0,3,3,"")     
+# print(total)   
+
+def printing_permutation(pref,rem):
+    if len(rem)==0:
+        print(pref)
+        return
+    for i in range(0,len(rem)): 
+        v=rem[i]
+        ros=rem[:i]+rem[i+1:]
+        printing_permutation(pref+v,ros)
+        
+# printing_permutation("", "ABC")   
