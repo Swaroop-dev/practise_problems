@@ -41,3 +41,29 @@ def canStoprecursive_with_memo(runway, initialSpeed, startindex=0, memo=None):
 
 # print(canStoprecursive_with_memo(runway=[
 #       True, False, True, True, True, False, True, True, False, True, True], initialSpeed=4, startindex=0))
+
+def checkForAnagrams(word, arr):
+    # Checking if the word has an anagram in the sliced array.
+    for x in arr:
+        if (sorted(word) == sorted(x)):
+            return True
+    return False
+            
+def funWithAnagrams(text):
+    limit = len(text)
+    text.reverse()
+    # Creating a copy of the list which will be modified,
+    # and will not affect the array slicing during the loop.
+    final_text = list(text)
+
+    # Looping through the list in reverse since we're eliminating
+    # the second anagram we find from the original list order.
+    count = 0
+    for i in range(0, limit):
+        if text[i+1:] and checkForAnagrams(text[i], text[i+1:]):
+            final_text.pop(i - count)
+            count += 1
+
+    return sorted(final_text)
+
+print(funWithAnagrams(['code','eodc','farmer','farm']))
