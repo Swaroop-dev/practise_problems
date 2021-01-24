@@ -1,11 +1,12 @@
 # Nqueens problem- no of ways placing N queens such that no queens attack each other
+#optimised using bitset
 
 n=4
 X=[[False]*n for _ in range(n)]
 totalWays=0
 
 def isSafe(row,col):
-
+    #column check
     for i in range(row-1,-1,-1):
         if X[i][col]==True:
             return False
