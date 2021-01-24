@@ -2,7 +2,7 @@
 # rodcutting problem
 # longest common sequence and subsequence
 # longest common increasing sequence
-# deletions required to convert string into palindrom
+# deletions required to convert string into palindrome
 # coin change problem
 
 
