@@ -127,8 +127,8 @@ class linkedlist:
             slow=slow.next
             fast=fast.next.next  
         print(slow.data) 
-        temp=slow.next     
-        slow.next=None
+        temp=prev.next    
+        prev.next=None
         self.printing_node(n1=temp)
         print('\n')
         self.printing_node()
@@ -136,18 +136,22 @@ class linkedlist:
         #reversing list
         first=self.head
         second=self.reversing_linkedlist(n1=temp)
+        self.printing_node(n1=second)
+        print('\n')
         #merging the linked list
-        while first.next:
+        while second.next:
             temp=first.next
             first.next=second
             first=temp
             temp=second.next
             second.next=first
-            second=temp    
+            second=temp 
+        self.adding_node(second.data)       
         self.printing_node()    
            
     
     def finding_the_intersection(self,l):
+        
         
         return
     
@@ -172,6 +176,8 @@ class linkedlist:
 
 
 l1 = linkedlist()
+l2=linkedlist()
+l2.adding_node(8)
 l1.adding_node(1)
 l1.adding_node(2)
 l1.adding_node(3)
@@ -179,7 +185,7 @@ l1.adding_node(4)
 l1.adding_node(5)
 l1.adding_node(6)
 l1.adding_node(7)
-# l1.adding_node(8)
+l1.adding_node(8)
 l1.folding_the_linked_list()
 # l1.printing_node()
 # print('\n')
