@@ -151,8 +151,14 @@ class linkedlist:
            
     
     def finding_the_intersection(self,l):
-        
-        
+        cur1=self.head
+        cur2=l.head
+        while cur1 and cur2:
+            if cur1==cur2:
+               print(cur1.data)
+               return 
+            cur1=cur1.next     
+            cur2=cur2.next     
         return
     
     def reversing_part_of_the_linkedlist(self, index1, index2):
@@ -177,6 +183,12 @@ class linkedlist:
 
 l1 = linkedlist()
 l2=linkedlist()
+l2.adding_node(2)
+l2.adding_node(3)
+l2.adding_node(4)
+l2.adding_node(1)
+l2.adding_node(5)
+l2.adding_node(9)
 l2.adding_node(8)
 l1.adding_node(1)
 l1.adding_node(2)
@@ -186,7 +198,8 @@ l1.adding_node(5)
 l1.adding_node(6)
 l1.adding_node(7)
 l1.adding_node(8)
-l1.folding_the_linked_list()
+# l1.folding_the_linked_list()
+l1.finding_the_intersection(l2)
 # l1.printing_node()
 # print('\n')
 # l1.deleting_mid_element()

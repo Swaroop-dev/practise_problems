@@ -7,12 +7,15 @@ def permutation_using_backtracking(s,j):
     if len(s)-1==j:
         print(s)
         return
+    
+    #j position element tot be swapped
+    #i position of element with which it is swapped
+    
     for i in range(j,len(s)):
         x=s[i]
         y=s[j]
-        if i<j:
-            s=s[:i]+y+s[i+1:j]+x+s[j+1:]
-        elif i==j:
+        
+        if i==j:
             s=s     
         else:
             s=s[:j]+x+s[j+1:i]+y+s[i+1:]
@@ -21,14 +24,13 @@ def permutation_using_backtracking(s,j):
         
         x=s[i]
         y=s[j]
-        if i<j:
-            s=s[:i]+y+s[i+1:j]+x+s[j+1:]
-        elif i==j:
+
+        if i==j:
             s=s         
         else:
             s[:j]+x+s[j+1:i]+y+s[i+1:]
         
-# permutation_using_backtracking('ABCD',0)        
+permutation_using_backtracking('ABCD',0)        
 
 
 
@@ -74,6 +76,6 @@ def rat_in_a_maze():
     helper(0, 0)
     return total_paths
 
-print(rat_in_a_maze())
+# print(rat_in_a_maze())
 
    
