@@ -21,10 +21,7 @@ def path(arr,n,m,i,j,visited=None):
     x=1+min(path(arr,n,m,i,j+1,visited),path(arr, n, m, i+1, j, visited),path(arr, n, m, i,j-1,visited) )
          
     
-    visited[i][j]=False
+    
     return x   
           
-print(path([[1,1,1,1],[0,0,0,1],[1,1,1,1],[1,0,1,1],[1,0,0,1],[0,9,1,1]],6, 4, 0, 0 ) )  
-    
-    
-        
+print(path([[1,0,0],[1,0,0],[1,9,1]],3, 3, 0, 0 ) )         
