@@ -207,8 +207,24 @@ class BinaryTree:
                
         while o1:
             print(o1.pop(),end="-")                 
-         
-
+    
+    def print_K_sum():
+        node=self.root
+        
+        def inorder1(node,k):
+            if node is None:
+                return 0    
+            if k<=0:
+                return 0 
+            if node.left:
+                sum=inorder1(node.left,k)
+            if k<=0:
+                return sum
+            sum=sum+node.data
+            k=k-1
+            if node.right:
+                return sum+inorder1(node.right,k)    
+        return inorder1(node,4)        
 t1 = BinaryTree(1)
 t1.root.left = Node(2)
 t1.root.right = Node(3)
@@ -216,6 +232,7 @@ t1.root.left.left = Node(4)
 t1.root.left.right = Node(5)
 t1.root.right.left = Node(6)
 t1.root.right.right = Node(7)
+t1.print_K_sum()
 # t1.root.left.left.left = Node(8)
 # t1.root.left.left.right = Node(9)
 # t1.root.left.right.left = Node(10)
@@ -246,7 +263,7 @@ t1.root.right.right = Node(7)
 # t1.printing_left_view(t1.root)
 # print('\n')
 # t1.printing_right_view(t1.root)
-t1.printing_bottom_view(t1.root)
-print('\n')
-t1.printing_top_view(t1.root)
+# t1.printing_bottom_view(t1.root)
+# print('\n')
+# t1.printing_top_view(t1.root)
 
