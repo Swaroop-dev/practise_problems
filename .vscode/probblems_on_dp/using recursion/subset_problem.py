@@ -37,4 +37,4 @@ def printing_permutation(pref,rem):
         ros=rem[:i]+rem[i+1:]
         printing_permutation(pref+v,ros)
         
-# printing_permutation("", "ABC")   
+printing_permutation("", "ABC")   
